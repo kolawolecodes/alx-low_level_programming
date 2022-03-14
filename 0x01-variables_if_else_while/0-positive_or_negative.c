@@ -3,9 +3,9 @@
 #include <stdio.h>
 /**
  * main - main block
- * description: get the value of a random number and print if it is positive, 
+ * Description - get the value of a random number and print if it is positive, 
  * negative or zero
- * return:Always 0 (success)
+ * Return:Always 0 (success)
  */
 int main(void)
 {
