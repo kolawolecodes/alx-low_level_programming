@@ -5,7 +5,7 @@
  * main - main block
  * description: get the value of a random number and print if it is positive, 
  * negative or zero
- * return: 0
+ * return:Always 0 (success)
  */
 int main(void)
 {
@@ -20,4 +20,4 @@ int main(void)
 	else
 		printf("%d is zero\n", n);
 	return (0);
-} 
+}
