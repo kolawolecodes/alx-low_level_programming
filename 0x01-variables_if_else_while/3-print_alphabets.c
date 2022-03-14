@@ -9,18 +9,17 @@
  */
 int main(void)
 {
-	char ch;
+	char lower_case;
+	char upper_case;
 
-	for (ch = 'a'; ch <= 'z'; ch++)
+	for (lower_case = 'a'; lower_case <= 'z'; lower_case++)
 	{
 		putchar(ch);
 	}
-	{
-		putchar("\n");
-	}
-	for (ch = 'A'; ch <= 'Z'; ch++)
+	for (upper_case = 'A'; upper_case <= 'Z'; upper_case++)
 	{
 		putchar(ch);
 	}
+	putchar('\n');
 	return (0);
 }
