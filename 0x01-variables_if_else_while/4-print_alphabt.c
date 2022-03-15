@@ -6,15 +6,15 @@
  */
 int main(void)
 {
-	char ch;
+	char alphabet;
 
-	for (ch = 'a'; ch <= 'z'; ch++)
-	if (ch == 'q')
+	for (alphabet = 'a'; alphabet <= 'z'; alphabet++)
+	if (alphabet == 'q')
 	continue;
-	else if (ch == 'e')
+	else if (alphabet == 'e')
 	continue;
 	{
-		putchar(ch);
+		putchar(alphabet);
 	}
 	putchar('\n');
 	return (0);
