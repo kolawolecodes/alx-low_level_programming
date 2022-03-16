@@ -1,7 +1,7 @@
 #include "main.h"
 /**
- * main - main block
- * Description:Print all aphabet x10
+ * Print all aphabet x10
+ * 
  * Return: Always 0 (success)
  */
 void print_alphabet_x10(void)
@@ -19,6 +19,7 @@ void print_alphabet_x10(void)
 
 		count++;
 		_putchar('\n');
+		return (0);
 	}
 
 }
