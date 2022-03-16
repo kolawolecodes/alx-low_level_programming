@@ -13,9 +13,9 @@ void print_alphabet_x10(void)
 	count = 0;
 	while (count < 10)
 	{
-		for (alphabet = 'a' ; alphabet <= 'z'; alphabet++)
+		for (ch = 'a' ; ch <= 'z'; ch++)
 		{
-			_putchar(alphabet);
+			_putchar(ch);
 		}
 
 		count++;
