@@ -2,7 +2,7 @@
 #include <stdio.h>
 /**
  * main - main block
- * print alphabet a to z ten times
+ * Description:Print all aphabet x10
  * Return: Always 0 (success)
  */
 void print_alphabet_x10(void)
