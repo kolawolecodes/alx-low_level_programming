@@ -3,13 +3,17 @@
 #include <time.h>
 #include <stdio.h>
 /**
+ * main - main block
+ * Generate key password
+ * @n: random valid password
+ * Return: always 0
  */
 int main(void)
 {
-int num;
+int n;
 
 srand(time(0));
 num = rand();
-printf("%i\n", num);
+printf("%i\n", n);
 return (0);
 }
