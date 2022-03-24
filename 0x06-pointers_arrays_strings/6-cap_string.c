@@ -1,58 +1,54 @@
-#include "main.h
+#include "main.h"
+#include <stdio.h>
+
 /**
- * separators - checks and ensure that all string is capitalized
- * @c: character to be checked
- * Return: if separator return 1. Otherwise return 0;
+ * isLower - determines whether ascii is lowercase
+ * @c: character
+ * Return: 1 if true, 0 if false
  */
-int separator(char c)
+int isLower(char c)
 {
-switch (c)
-{
-case ' ':
-case '\t':
-case '\n':
-case ',':
-case ';':
-case '.':
-case '!':
-case '?':
-case '"':
-case '(':
-case ')':
-case '{':
-case '}':
-return (1);
-
-default:
-return (0);
+	return (c >= 97 && c <= 122);
 }
 
+/**
+ * isDelimiter - determines whether ascii is a delimiter
+ * @c: character
+ * Return: 1 if true, 0 if false
+ */
+int isDelimiter(char c)
+{
+	int i;
+	char delimiter[] = " \t\n,.!?\"(){}";
 
+	for (i = 0; i < 12; i++)
+		if (c == delimiter[i])
+			return (1);
+	return (0);
 }
+
 /**
  * cap_string - capitalizes all words of a string
- * @s: string to uppercase
- * Return: returns the modified string
+ * @s: input string
+ * Return: string with capitalized words
  */
 char *cap_string(char *s)
 {
-int count, upper;
+	char *ptr = s;
+	int foundDelimit = 1;
 
-upper = -32;
-
-count = 0;
-
-while (s[count] != '\0')
-{
-if (s[count] >= 'a' && s[count] <= 'z')
-{
-
-
-if (s[count] == *s || separator(s[count - 1]))
-
-s[count] += upper;
-}
-count++;
-}
-return (s);
+	while (*s)
+	{
+		if (isDelimiter(*s))
+			foundDelimit = 1;
+		else if (isLower(*s) && foundDelimit)
+		{
+			*s -= 32;
+			foundDelimit = 0;
+		}
+		else
+			foundDelimit = 0;
+		s++;
+	}
+	return (ptr);
 }
