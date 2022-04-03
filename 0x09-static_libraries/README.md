@@ -1,1 +1,1 @@
-readme for static library project
+C-function nexted loop Readme
