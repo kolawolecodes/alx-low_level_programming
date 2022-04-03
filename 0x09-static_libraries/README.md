@@ -1,1 +1,1 @@
-C-function nexted loop Readme
+readme for static libraries
