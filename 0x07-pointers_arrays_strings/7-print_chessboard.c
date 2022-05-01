@@ -9,18 +9,32 @@ void print_chessboard(char (*a)[8])
 {
 	/*Declaring variables*/
 	int i, j;
+	char lower_s[] = {114, 107, 98, 113, 107, 98, 107, 114};
+	char upper_s[] = {82, 75, 66, 81, 75, 66, 75, 82};
 
-	i = 0;
-	while (i < 8) /*number repetitions*/
+	for (i = 0; i < 8; i++)
 	{
-		j = 0;
-		while (j < 8)
+		for (j = 0; j < 8; j++)
 		{
-			_putchar (a[i][j]);
-			j++;
+			if (i == 1)
+			{
+				_putchar(80);
+			}
+			else if (i < 1)
+			{
+				_putchar(upper_s[j]);
+			}
+			else if (i == 6)
+			{
+				_putchar(112);
+			}
+			else if (i == 7)
+			{
+				_putchar(lower_s[j]);
+			}
+			else
+				_putchar(' ');	
 		}
-		_putchar ('\n'); /*print new line*/
-		i++; /*add +1*/
+		_putchar('\n');
 	}
-
 }
