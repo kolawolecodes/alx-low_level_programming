@@ -1,48 +1,25 @@
-#include "main.h"
-/**
- * _strlen - gets length of string for a const
- * @b: pointer to string
- * Return: length of string
- */
-int _strlen(const char *b)
-{
-	/*declare vairables to be used*/
-	int count = 0;
-
-	while (b[count] != '\0')
-		count++;
-	return (count);
-}
+#include "lists.h"
 
 /**
- * binary_to_uint - convert binary number to unsigned int
- * @b: pointer to a string
- * Return: unisgned int
+ * print_listint - prints out all elements of a list
+ * @h: pointer to a node
+ * Return: number of element nodes
  */
 
-unsigned int binary_to_uint(const char *b)
+size_t print_listint(const listint_t *h)
 {
 	/*declare variables to be used*/
-	unsigned int self_add = 1, decimal = 0, num = 0;
-	int len, i;
-	/*check if character is not NULL*/
-	if (!b)
-		return (0);
-	/*get string length*/
-	len = _strlen(b);
-	/*loop through characters and check if not 0 or 1*/
-	for (i = len - 1; i >= 0; i--)
+	int count = 0;
+	const listint_t *ptr;
+	/*set ptr to h address*/
+	ptr = h;
+	/*traverse the loop and print out the values*/
+	while (ptr != NULL)
 	{
-		if (b[i] != '0' && b[i] != '1')
-			return (0);/*there's a wrong character*/
-		/*check and convert*/
-		if (b[i] == '1')
-			num = self_add;
-		else
-			num = 0;
-
-		decimal += num;/*adds the decimal number*/
-		self_add += self_add;/*add self*/
+		printf("%d\n", ptr->n);
+		count++;
+		/*set ptr to the next address*/
+		ptr = ptr->next;
 	}
-	return (decimal);
+	return (count);
 }
