@@ -1,50 +1,68 @@
 #include "main.h"
-
 /**
- * main - copies the content of a file to another file
- * @argc: number of arguments passed
- * @argv: double pointer
- * Return: the actual number of letters it could read and print
+ * error_check - checks for errors
+ * @fdfr: integer returned from read
+ * @fdto: integer returned from write
+ * @av: argument element
  */
-int main(int argc, char **argv)
+void error_check(int fdfr, int fdto, char **av)
 {
-    int f1, f2, n;
-    char buf[1024];
-
-    if (argc != 3)
-    {
-        dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
-        exit(97);
-    }
-    f1 = open(argv[1], O_RDONLY);
-    if (f1 == -1)
-    {
-        dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-        exit(98);
-    }
-    f2 = open(argv[2], O_CREAT | O_TRUNC | O_WRONLY, 0664);
-    while ((n = read(f1, buf, 1024)) > 0)
-    {
-        if (write(f2, buf, n) != n || f2 == -1)
-        {
-            dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-            exit(99);
-        }
-    }
-    if (n == -1)
-    {
-        dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-        exit(98);
-    }
-    if (close(f1) < 0)
-    {
-        dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", f1);
-        exit(100);
-    }
-    if (close(f2) < 0)
-    {
-        dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", f2);
-        exit(100);
-    }
-    return (0);
+	/* check if the file was read */
+	if (fdfr == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
+		exit(98);
+	}
+	/* check if file was written */
+	if (fdto == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
+		exit(99);
+	}
+}
+/**
+ * main - Entry point
+ * @ac: arguments
+ * @av: arguments elements
+ * Return: Always 0.
+ */
+int main(int ac, char **av)
+{
+	/* Declare variables */
+	int numread = 1024, numwrit, fdfr, fdto, clfr, clto;
+	char buf[1024];
+	/* check if arguments are correct */
+	if (ac != 3)
+	{
+		dprintf(2, "Usage: cp file_from file_to\n");
+		exit(97);
+	}
+	/* open and read the file */
+	fdfr = open(av[1], O_RDONLY);
+	/* open and wrtie to file_to */
+	fdto = open(av[2], O_WRONLY | O_TRUNC | O_CREAT, 0664);
+	/* check for error */
+	error_check(fdfr, fdto, av);
+	while (numread > 0)
+	{
+		/* read and give the number of char read */
+		numread = read(fdfr, buf, 1024);
+		/* check for error */
+		if (numread == -1)
+			error_check(-1, 0, av);
+		/* write to the file */
+		numwrit = write(fdto, buf, numread);
+		/* check for error */
+		if (numwrit == -1)
+			error_check(0, -1, av);
+	}
+	clfr = close(fdfr);
+	/* check if file descriptor for read closes */
+	if (clfr == -1)
+		dprintf(2, "Error: Can't close fd %d", fdfr), exit(100);
+	/* check if file descriptor for write closes */
+	clto = close(fdto);
+	if (clto == -1)
+		dprintf(2, "Error: Can't close fd %d", fdto), exit(100);
+	return (0);
 }
