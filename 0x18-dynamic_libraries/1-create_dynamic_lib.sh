@@ -1,3 +1,3 @@
 #!/bin/bash
 gcc -fPIC -c *.c
-ar rc liball.a *.o
+gcc -shared liball.a *.o
